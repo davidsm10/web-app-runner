@@ -15,6 +15,7 @@ self.addEventListener("fetch", (event) => {
 async function getResponse(request) {
   const url = new URL(request.url);
   url.hash = "";
+  url.search = "";
   const asset = await db.getItem(url.toString());
   if (asset) {
     return new Response(asset.body, { headers: asset.headers });
